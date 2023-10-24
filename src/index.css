@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.box-shadow:hover {
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+.blue-shodow {
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+.animate-on-load {
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+  transform: translateY(
+    0
+  ); /* Initial position for translation effect (no translation) */
+}
+.translate-down-fade {
+  animation-name: translateDownFadeIn;
+}
+@keyframes translateDownFadeIn {
+  from {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.spin {
+  display: inline-block;
+  animation: spin 10s linear infinite; /* Adjust the duration and timing function as needed */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); /* Start with no rotation */
+  }
+  100% {
+    transform: rotate(360deg); /* Rotate a full circle (360 degrees) */
+  }
+}
