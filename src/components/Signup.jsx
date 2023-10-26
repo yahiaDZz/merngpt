@@ -38,8 +38,8 @@ const Signup = () => {
           const data = {
             username: username,
             email: email,
+            password: password,
           };
-          console.log("Sending email");
           axios
             .post("http://localhost:4000/sendMail", data)
             .then((res) => {
@@ -187,7 +187,6 @@ const Signup = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5"
                   required
                   onChange={(e) => {
-                    console.log(confirm);
                     setConfirm(e.target.value);
                   }}
                 />

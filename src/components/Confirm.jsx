@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import axios from "axios";
 const Confirm = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -8,20 +9,25 @@ const Confirm = () => {
   const lastPathSegment = pathSegments[pathSegments.length - 1];
   const token = lastPathSegment.replaceAll("!", ".");
   try {
-    let testDecode = jwt_decode(token);
+    const decodedToken = jwt_decode(token);
+    const email = decodedToken.info.email;
+    const username = decodedToken.info.username;
+    const password = decodedToken.info.password;
+    const data = {
+      email: email,
+      username: username,
+      password: password,
+    };
+    axios.post("http://localhost:4000/signup", data).then((res) => {
+      alert("Account created successfully!");
+      navigate("/login");
+    });
   } catch (err) {
+    alert("Unknown error occured, please try again later...");
     navigate("/");
   }
-  const decodedToken = jwt_decode(token);
-  useEffect(() => {
-    console.log("TOKEN:");
-    console.log(token);
-    console.log("DECODED:");
-    console.log(decodedToken);
-    let email = decodedToken.info.email;
-    console.log(email);
-  }, []);
-  return <div className="text-white">{token}</div>;
+  useEffect(() => {}, []);
+  return <div></div>;
 };
 
 export default Confirm;
