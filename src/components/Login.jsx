@@ -6,17 +6,25 @@ import axios from "axios";
 const Login = () => {
   const [email, setEmail] = useState("Yahia");
   const [password, setPassword] = useState("Abcdefghi123@");
+  const [invalidEmail, setInvalidEmail] = useState(false);
+  const isEmailValid = (email) => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailRegex.test(email);
+  };
   const handleLogin = () => {
     // console.log("Username: ", username, "Password: ", password);
-    axios.post("http://localhost:4000/login", {
-      email: email,
-      password: password,
-    });
+    setInvalidEmail(!isEmailValid(email));
+    if (!invalidEmail) {
+      axios.post("http://localhost:4000/login", {
+        email: email,
+        password: password,
+      });
+    }
   };
   return (
     <>
       <Navbar />
-      <div className="h-screen font-display flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <div className="h-full font-display flex flex-col items-center justify-center px-6 py-8">
         <div className="shadow-2xl shadow-blue-400 rounded-lg flex items-center w-auto bg-transparent">
           <div className="w-80 xxs:hidden sm:hidden lg:block md:block xs:hidden">
             <img src={robot} />
@@ -27,12 +35,21 @@ const Login = () => {
             </h1>
             <div className="space-y-4 md:space-y-6">
               <div>
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-white "
-                >
-                  Email
-                </label>
+                <div className="flex items-center justify-between">
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-sm font-medium text-white "
+                  >
+                    Email
+                  </label>
+                  <h1
+                    className={`${
+                      invalidEmail ? "block" : "hidden"
+                    } animate-on-load translate-down-fade bg-red-500 rounded-lg px-12 text-white`}
+                  >
+                    Invalid Email address
+                  </h1>
+                </div>
                 <input
                   type="email"
                   name="email"
