@@ -9,6 +9,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Chat from "./components/Chat";
 import LoggedNavbar from "./components/LoggedNavbar";
+import Confirm from "./components/Confirm";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -16,6 +17,7 @@ function App() {
   return (
     <Routes>
       <Route exact path={"/"} element={<Home />} />
+      <Route exact path="/confirm/*" element={<Confirm />} />
       <Route exact path={"/chat"} element={<Chat />} />
       <Route exact path={"/login"} element={<Login />} />
       <Route exact path={"/signup"} element={<Signup />} />

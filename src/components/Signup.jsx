@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "./Navbar";
 import robotsignup from "../assets/robotsignup.png";
 import { Link } from "react-router-dom";
+import axios from "axios";
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -16,9 +17,6 @@ const Signup = () => {
     setInvalidEmail(!isEmailValid(email));
     setInvalidPassword(!isPasswordValid(password));
     setInvalidConfirm(password !== confirm);
-    console.log("password:", password);
-    console.log("confirm:", confirm);
-    console.log("equality:", confirm === password);
     if (
       isUsernameValid(username) &&
       isEmailValid(email) &&
@@ -26,6 +24,12 @@ const Signup = () => {
       password === confirm
     ) {
       alert("signup !!");
+      //send confirmation email
+      const data = {
+        username: username,
+        email: email,
+      };
+      axios.post("http://localhost:4000/sendEmail", data);
     }
   };
   const isUsernameValid = (username) => {

@@ -17,7 +17,7 @@ const HomeHeader = () => {
             ]}
             wrapper="span"
             speed={50}
-            className="text-center xxs:text-xl sm:text-xl lg:text-2xl"
+            className="text-center xxs:text-xl sm:text-5xl md:text-7xl lg:text-7xl"
             repeat={Infinity}
           />
         </div>
