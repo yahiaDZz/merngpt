@@ -4,7 +4,7 @@ import robot from "../assets/robot.png";
 import Navbar from "./Navbar";
 import axios from "axios";
 const Login = () => {
-  const [email, setEmail] = useState("Yahia");
+  const [email, setEmail] = useState("ly_benyahia@esi.dz");
   const [password, setPassword] = useState("Abcdefghi123@");
   const [invalidEmail, setInvalidEmail] = useState(false);
   const isEmailValid = (email) => {
