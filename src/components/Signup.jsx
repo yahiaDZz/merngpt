@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import robotsignup from "../assets/robotsignup.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 const Signup = () => {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,13 +25,34 @@ const Signup = () => {
       isPasswordValid(password) &&
       password === confirm
     ) {
-      alert("signup !!");
-      //send confirmation email
-      const data = {
-        username: username,
-        email: email,
-      };
-      axios.post("http://localhost:4000/sendEmail", data);
+      //check if email is already in use
+      axios
+        .post("localhost:3000/getUserByEmail", { email: email })
+        .then((res) => {
+          alert("User Already Exists!");
+          navigate("/");
+        })
+        .catch((err) => {
+          //if not, create user:
+          //send confirmation email
+          const data = {
+            username: username,
+            email: email,
+          };
+          console.log("Sending email");
+          axios
+            .post("http://localhost:4000/sendMail", data)
+            .then((res) => {
+              alert(
+                "We sent a verification email to your email address, please check your inbox and click on the button to confirm your account."
+              );
+              navigate("/");
+            })
+            .catch((err) => {
+              alert("Unknown error occured, please try again later.");
+              navigate("/");
+            });
+        });
     }
   };
   const isUsernameValid = (username) => {

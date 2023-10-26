@@ -48,7 +48,7 @@ const HomeSubheader = () => {
                 </div>
               </div>
               <div className="bg-secondary rounded-lg font-sub">
-                <pre class="language-javascript">
+                <pre className="language-javascript">
                   <code className="text-sm">
                     <h1>javascript</h1>
                     <h1>let age = 25;</h1>
@@ -68,7 +68,7 @@ const HomeSubheader = () => {
                 </div>
               </div>
               <div className="bg-secondary rounded-lg font-sub">
-                <pre class="language-javascript">
+                <pre className="language-javascript">
                   <code className="text-sm">
                     <h1>javascript</h1>
                     <h1>const age = 25;</h1>
