@@ -9,7 +9,7 @@ const Login = () => {
   const handleLogin = () => {
     // console.log("Username: ", username, "Password: ", password);
     axios.post("http://localhost:4000/login", {
-      username: username,
+      email: email,
       password: password,
     });
   };
